@@ -1,0 +1,17 @@
+{
+  "name": "astronautical-accretion",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/db": "^0.14.8",
+    "@tailwindcss/vite": "^4.0.14",
+    "astro": "^5.5.1",
+    "tailwindcss": "^4.0.14"
+  }
+}

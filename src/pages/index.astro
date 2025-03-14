@@ -1,0 +1,39 @@
+---
+import Match from '../components/Match.astro';
+import Layout from '../layouts/Layout.astro';
+import { splitStandings } from "../scripts/utils"
+import {db, Teams, Matches} from "astro:db"
+
+
+const matches = await db.select().from(Matches);
+const teams = await db.select().from(Teams);
+const standings = splitStandings(teams);
+let group1 = standings.group1;
+let group2 = standings.group2;
+console.log(teams)
+---
+
+<Layout>
+	<div class="flex flex-col w-screen h-screen p-4 bg-black">
+		<div class="flex w-full bg-gradient-to-r from-[#06879D] via-gray-600 to-[#06879D] p-4 rounded-3xl justify-center text-4xl text-white font-sofascore mb-4">SocaFeva 2025</div>
+		<div class="flex flex-col w-full md:flex-row">
+			<div class="flex flex-col items-center w-full mb-4 overflow-hidden bg-gray-600 md:w-1/3 rounded-3xl md:m-0">
+				<h1 class="m-2 text-2xl text-white font-sofascore">Matches</h1>
+				{matches ? matches.map(item => (<Match match={item} />)) : ""}
+				
+			</div>
+			<div class="flex flex-col items-center w-full overflow-hidden bg-gray-600 md:ml-4 md:w-2/3 rounded-3xl">
+				<h1 class="m-2 text-2xl text-white font-sofascore">Standings</h1>
+				<div class="flex flex-col items-center w-5/6 p-2 m-2 bg-gray-800 h-fit rounded-3xl">
+					<h1 class="text-xl text-white font-sofascore">Group 1</h1>
+					{group1.map(team => (<p class="py-2 text-white font-sofascore">{team.name} | {team.points} Points</p>))}
+				</div>
+				<div class="flex flex-col items-center w-5/6 p-2 m-2 bg-gray-800 h-fit rounded-3xl">
+					<h1 class="text-xl text-white font-sofascore">Group 2</h1>
+					{group2.map(team => (<p class="py-2 text-white font-sofascore">{team.name} | {team.points} Points</p>))}
+				</div>
+			</div>
+		</div>
+	</div>
+		
+</Layout>

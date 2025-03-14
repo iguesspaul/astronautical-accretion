@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --font-sofascore: "Space Grotesk", sans-serif
+}

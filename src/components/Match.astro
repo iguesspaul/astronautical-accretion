@@ -1,0 +1,6 @@
+---
+const {match} = Astro.props
+---
+<a href=`/${match.id}` class="flex flex-row justify-center w-full p-4 text-white transition-colors h-fit hover:bg-gray-800">
+    <p class="font-mono font-bold">{match.matchdata.hometeam.name} <span class="font-normal">{match.matchdata.hometeam.goals}  - {match.matchdata.awayteam.goals}</span> {match.matchdata.awayteam.name}</p>
+</a>
